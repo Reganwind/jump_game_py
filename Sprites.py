@@ -1,6 +1,8 @@
 #Sprite classes for platform game
+import pygame
 import pygame as pg
-from Settings import *
+import os
+from setting import *
 vec = pg.math.Vector2
 
 class Player(pg.sprite.Sprite):
@@ -10,8 +12,8 @@ class Player(pg.sprite.Sprite):
         self.image = pg.Surface((30, 40))
         self.image.fill(YELLOW)
         self.rect = self.image.get_rect()
-        self.rect.center = (WIDTH / 2, HEIGHT / 2)
-        self.pos = vec(WIDTH / 2, HEIGHT/ 2)
+        self.rect.center = (int(480 / 2), int(600 / 2))
+        self.pos = vec(int(480 / 2), int(600 / 2))
         self.vel = vec(0, 0)
         self.acc = vec(0, 0)
 
@@ -52,3 +54,50 @@ class PlatForm(pg.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
+
+# pygame.init()
+# pygame.mixer.init()
+#
+# screen = pygame.display.set_mode(SIZE)
+# pygame.display.set_caption("Jumper")
+# clock = pygame.time.Clock()
+#
+# game_folder = os.path.dirname(__file__)
+# image_folder = os.path.join(game_folder, "./img/")
+
+#define player
+class Player1(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        # self.image = pg.Surface((20,20))
+        self.image = pg.image.load(os.path.join(image_folder, "little.png"))
+        # self.image.fill(RED)
+        self.image.set_colorkey(BLACK)
+        self.rect = self.image.get_rect()
+        self.rect.center = (WIDTH/2, HEIGHT/2)
+
+    def update(self):
+        self.rect.x +=5
+        if self.rect.left > WIDTH:
+            self.rect.right = 0
+
+# all_sprites = pygame.sprite.Group()
+# player = Player1()
+# all_sprites.add(player)
+#
+# running = True
+# while running:
+#     clock.tick(FPS)
+#
+#     for event in pg.event.get():
+#         if event.type == pg.QUIT:
+#             running = False
+#
+#     all_sprites.update()
+#
+#     screen.fill(BLACK)
+#     all_sprites.draw(screen)
+#
+#     pygame.display.update()
+#
+# pygame.quit()

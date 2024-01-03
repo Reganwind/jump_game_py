@@ -1,8 +1,9 @@
 #game options/setting
 TITLE = "Jumpy"
 WIDTH = 480
-HEIGHT = 600
-FPS = 60
+HEIGHT = 320
+FPS = 30
+SIZE = WIDTH, HEIGHT
 
 # Player properties
 PLAYER_ACC = 0.5
@@ -17,10 +18,14 @@ PLATFORM_LIST = [(0, HEIGHT - 40, WIDTH, 40),
                  (175, 100, 50, 20)]
 
 #define colors
-WIDTH = (255, 255, 255)
-BlACK = (0, 0, 0)
+WITHE = (255, 255, 255)
+BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 LIGHTBLUE = (0, 155, 155)
+
+# define player bound
+PLAYER_TOP_LIMIT = 100
+PLAYER_BOTTOM_LIMIT = 250

@@ -1,5 +1,5 @@
 from Sprites import *
-from Settings import *
+from setting import *
 import pygame as pg
 import random
 
@@ -9,7 +9,7 @@ class Game:
         # initializa game window, etc
         pg.init()
         pg.mixer.init()
-        self.screen = pg.display.set_mode((WIDTH, HEIGHT))
+        self.screen = pg.display.set_mode(SIZE)
         pg.display.set_caption(TITLE)
         self.clock = pg.time.Clock()
         self.running = True
@@ -72,13 +72,17 @@ class Game:
         # game over/continue
         pass
 
-if __name__ == "__main__":
-    g = Game()
-    g.show_start_screen()
-    while g.running:
-        g.new()
-        g.show_go_screen()
-
-    pg.quit()
-
+# if __name__ == "__main__":
+#     g = Game()
+#     g.show_start_screen()
+#     while g.running:
+#         g.new()
+#         g.show_go_screen()
+#     pg.quit()
+g = Game()
+g.show_start_screen()
+while g.running:
+    g.new()
+    g.show_go_screen()
+pg.quit()
 
