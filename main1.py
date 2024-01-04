@@ -1,6 +1,8 @@
 import pygame
 import time
-
+####
+#   main1 用于测试
+####
 # def size
 SIZE = WIDTH, HEIGHT = 600, 480
 FPS = 10

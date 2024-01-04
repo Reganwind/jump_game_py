@@ -1,9 +1,6 @@
 from Sprites import *
 from setting import *
 import pygame as pg
-import random
-
-
 class Game:
     def __init__(self):
         # initializa game window, etc
@@ -21,7 +18,7 @@ class Game:
         self.player = Player(self)
         self.all_sprites.add(self.player)
         for plat in PLATFORM_LIST:
-            p = Platform(*plat)
+            p = PlatForm(*plat)
             self.all_sprites.add(p)
             self.platforms.add(p)
         self.run()
