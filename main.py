@@ -1,6 +1,7 @@
 from Sprites import *
 from setting import *
 import pygame as pg
+import random
 class Game:
     def __init__(self):
         # initializa game window, etc
@@ -37,10 +38,33 @@ class Game:
         self.all_sprites.update()
         # check if player hits a platform - only if falling
         # if self.player.vel.y > 0:
-        hits = pg.sprite.spritecollide(self.player, self.platforms, False)
-        if hits:
-            self.player.pos.y = hits[0].rect.top
-            self.player.vel.y = 0
+        ### 新增滚动屏幕
+        # hits = pg.sprite.spritecollide(self.player, self.platforms, False)
+        # if hits:
+        #     self.player.pos.y = hits[0].rect.top
+        #     self.player.vel.y = 0
+        if self.player.vel.y > 0:
+            hits = pg.sprite.spritecollide(self.player, self.platforms, False)
+            if hits:
+                self.player.pos.y = hits[0].rect.top
+                self.player.vel.y = 0
+        #   如果方块高度 < 屏幕的1/4，则所有挡板下移
+        if self.player.rect.top <= HEIGHT / 4:
+            self.player.pos.y += abs(self.player.vel.y)
+            for plat in self.platforms:
+                plat.rect.y += abs(self.player.vel.y)
+                if plat.rect.top >= HEIGHT:
+                    #  移除超出屏幕的方块
+                    plat.kill()
+        # 生成新方块
+        while len(self.platforms) < 6:
+            width = random.randrange(50, 100)
+            p = PlatForm(random.randrange(0, WIDTH - width),
+                         random.randrange(-75, -30),
+                         width, 20)
+            self.platforms.add(p)
+            self.all_sprites.add(p)
+
 
     def events(self):
         # game loop - events
@@ -69,17 +93,17 @@ class Game:
         # game over/continue
         pass
 
-# if __name__ == "__main__":
-#     g = Game()
-#     g.show_start_screen()
-#     while g.running:
-#         g.new()
-#         g.show_go_screen()
-#     pg.quit()
-g = Game()
-g.show_start_screen()
-while g.running:
-    g.new()
-    g.show_go_screen()
-pg.quit()
+if __name__ == "__main__":
+    g = Game()
+    g.show_start_screen()
+    while g.running:
+        g.new()
+        g.show_go_screen()
+    pg.quit()
+# g = Game()
+# g.show_start_screen()
+# while g.running:
+#     g.new()
+#     g.show_go_screen()
+# pg.quit()
 
