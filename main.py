@@ -11,9 +11,11 @@ class Game:
         pg.display.set_caption(TITLE)
         self.clock = pg.time.Clock()
         self.running = True
+        self.font_name = pg.font.match_font(FONT_NAME)
 
     def new(self):
         # start a new game
+        self.score = 0
         self.all_sprites = pg.sprite.Group()
         self.platforms = pg.sprite.Group()
         self.player = Player(self)
@@ -56,6 +58,16 @@ class Game:
                 if plat.rect.top >= HEIGHT:
                     #  移除超出屏幕的方块
                     plat.kill()
+                    self.score += 10
+
+        # 死亡重新开始
+        if self.player.rect.bottom > HEIGHT:
+            for sprite in self.all_sprites:
+                sprite.rect.y -= max(self.player.vel.y, 10)
+                if sprite.rect.bottom < 0:
+                    sprite.kill()
+        if len(self.platforms) == 0:
+            self.playing = False
         # 生成新方块
         while len(self.platforms) < 6:
             width = random.randrange(50, 100)
@@ -64,6 +76,8 @@ class Game:
                          width, 20)
             self.platforms.add(p)
             self.all_sprites.add(p)
+
+
 
 
     def events(self):
@@ -78,10 +92,18 @@ class Game:
                 if event.key == pg.K_SPACE:
                     self.player.jump()
 
+    def draw_text(self, text, size, color, x, y):
+        font = pg.font.Font(self.font_name, size)
+        text_surface = font.render(text, True, color)
+        text_rect = text_surface.get_rect()
+        text_rect.midtop = (x, y)
+        self.screen.blit(text_surface, text_rect)
+
     def draw(self):
         # game loop - draw
         self.screen.fill(BLACK)
         self.all_sprites.draw(self.screen)
+        self.draw_text(str(self.score), 22,  WHITE, WIDTH / 2, 15) # 显示分数
         # after drawing everything, flip the display
         pg.display.flip()
 
@@ -92,6 +114,8 @@ class Game:
     def show_go_screen(self):
         # game over/continue
         pass
+
+
 
 if __name__ == "__main__":
     g = Game()
