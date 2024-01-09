@@ -8,6 +8,7 @@ class Game:
         pg.init()
         pg.mixer.init()
         self.screen = pg.display.set_mode(SIZE)
+        #self.background = pg.image.load(BACKGROUND_IMG).convert() ##添加背景
         pg.display.set_caption(TITLE)
         self.clock = pg.time.Clock()
         self.running = True
@@ -46,7 +47,7 @@ class Game:
         #     self.player.pos.y = hits[0].rect.top
         #     self.player.vel.y = 0
         if self.player.vel.y > 0:
-            hits = pg.sprite.spritecollide(self.player, self.platforms, False)
+            hits = pg.sprite.spritecollide(self.player, self.platforms, False) ##碰撞检测
             if hits:
                 self.player.pos.y = hits[0].rect.top
                 self.player.vel.y = 0
@@ -70,7 +71,7 @@ class Game:
             self.playing = False
         # 生成新方块
         while len(self.platforms) < 6:
-            width = random.randrange(50, 100)
+            width = random.randrange(50, 200)
             p = PlatForm(random.randrange(0, WIDTH - width),
                          random.randrange(-75, -30),
                          width, 20)
