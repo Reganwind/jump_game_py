@@ -9,11 +9,12 @@ class Player(pg.sprite.Sprite):
     def __init__(self, game):
         pg.sprite.Sprite.__init__(self)
         self.game = game
-        self.image = pg.Surface((30, 40))
-        self.image.fill(YELLOW)
+        # self.image = pg.Surface((30, 40))
+        # self.image.fill(YELLOW)
+        self.image = pygame.image.load('img/little.png').convert()
         self.rect = self.image.get_rect()
-        self.rect.center = (int(480 / 2), int(600 / 2))
-        self.pos = vec(int(480 / 2), int(600 / 2))
+        self.rect.center = (WIDTH / 2, HEIGHT / 2)
+        self.pos = vec(WIDTH / 2, HEIGHT / 2)
         self.vel = vec(0, 0)
         self.acc = vec(0, 0)
 

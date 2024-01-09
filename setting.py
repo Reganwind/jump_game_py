@@ -1,7 +1,7 @@
 #game options/setting
 TITLE = "Jumpy"
-WIDTH = 480
-HEIGHT = 320
+WIDTH = 800
+HEIGHT = 600
 FPS = 60  ##调整游戏速度
 SIZE = WIDTH, HEIGHT
 FONT_NAME = 'arial'
