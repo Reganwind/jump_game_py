@@ -13,10 +13,10 @@ class Player(pg.sprite.Sprite):
         # self.image.fill(YELLOW)
         self.image = pygame.image.load('img/little.png').convert()
         self.rect = self.image.get_rect()
-        self.rect.center = (WIDTH / 2, HEIGHT / 2)
-        self.pos = vec(WIDTH / 2, HEIGHT / 2)
-        self.vel = vec(0, 0)
-        self.acc = vec(0, 0)
+        self.rect.center = (WIDTH / 2, HEIGHT - 50) # #矩阵位置
+        self.pos = vec(WIDTH / 2, HEIGHT - 50 ) ## 位置
+        self.vel = vec(0, 0) ## 速度
+        self.acc = vec(0, 0) ## 加速度
 
     def jump(self):
         # jump only if standing on a platform
@@ -51,7 +51,7 @@ class PlatForm(pg.sprite.Sprite):
     def __init__(self, x, y, w, h):
         pg.sprite.Sprite.__init__(self)
         self.image = pg.Surface((w, h))
-        self.image.fill(GREEN)
+        self.image.fill(WHITE)
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y

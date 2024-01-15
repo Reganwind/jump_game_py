@@ -12,7 +12,7 @@ PLAYER_FRICTION = -0.12
 PLAYER_GRAV = 0.8
 PLAYER_JUMP = 20
 
-# Starting platforms
+# Starting platforms 初始界面地板以及方块
 PLATFORM_LIST = [(0, HEIGHT - 40, WIDTH, 40),
                  (WIDTH / 2 - 50, HEIGHT * 3/ 4, 100, 20),
                  (125, HEIGHT - 350, 100, 20),
